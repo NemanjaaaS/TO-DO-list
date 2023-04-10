@@ -1,4 +1,4 @@
-CREATE TABLE toDoTasks(
+CREATE TABLE to_do_tasks(
     id INT PRIMARY KEY AUTO_INCREMENT,
     date DATE
 )

@@ -4,6 +4,6 @@ CREATE TABLE task(
     description VARCHAR(255),
     time TIME,
     finished BOOLEAN,
-    toDoList_id INT,
-    CONSTRAINT fk_toDoTasks_id FOREIGN KEY (toDoList_id) REFERENCES task(id)
-)
+    to_do_tasks_id INT,
+    CONSTRAINT fk_toDoTasks_id FOREIGN KEY (to_do_tasks_id) REFERENCES task(id)
+);
