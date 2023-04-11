@@ -3,6 +3,4 @@ databaseChangeLog:
       id: 1
       author: Nemanja
   - include:
-      file: db/changelog/sql/createToDoTasksTable.sql
-  - include:
       file: db/changelog/sql/createTaskTable.sql
