@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +37,14 @@ public class TaskController {
                     return taskRepository.save(task);
                 });
     }
+    @PostMapping("/task/{id}")
+    Optional<Task> setFinished(@PathVariable Long id){
+        return taskRepository.findById(id)
+                        .map(task1 -> {
+                            task1.setFinished(true);
+                            return taskRepository.save(task1);
+                        });
+    }
     @DeleteMapping("/task/{id}")
     String deleteTask(@PathVariable Long id) throws Exception {
         if(!taskRepository.existsById(id)){
@@ -55,4 +62,3 @@ public class TaskController {
         return taskRepository.findAll();
     }
 }
- 

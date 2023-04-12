@@ -1,0 +1,5 @@
+Prikaz svih taskova po datumu (da ima kao kalentar da se klikne na neki datum i da se prikazu svi taskovi za taj datum)
+Da kad se otvori po default stoji danasnji datum i ti taskovi (optional)
+Editovanje taska
+Stikliranje taska kad je zavrsen
+Brisanje taska
