@@ -1,4 +1,0 @@
-CREATE TABLE toDoTasks(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    date DATE
-)
