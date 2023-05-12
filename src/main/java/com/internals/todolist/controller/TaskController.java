@@ -2,6 +2,7 @@ package com.internals.todolist.controller;
 
 import com.internals.todolist.model.Task;
 import com.internals.todolist.repositories.TaskRepository;
+import com.internals.todolist.services.ToDoListServiceImpl;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,18 +14,21 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:3000/")
 public class TaskController {
     private final TaskRepository taskRepository;
+    private final ToDoListServiceImpl toDoListService;
 
-    public TaskController(TaskRepository taskRepository) {
+    public TaskController(TaskRepository taskRepository, ToDoListServiceImpl toDoListService) {
         this.taskRepository = taskRepository;
+        this.toDoListService = toDoListService;
     }
 
     @PostMapping("/task")
     Task newTask(@RequestBody Task task){
-        return taskRepository.save(task);
+
+        return toDoListService.saveTask(task);
     }
     @GetMapping("/task/{id}")
     Optional<Task> getTaskById(@PathVariable Long id){
-        return taskRepository.findById(id);
+        return toDoListService.getTaskById(id);
     }
     @PutMapping("/task/{id}")
     Optional<Task> editTask(@RequestBody Task newTask,@PathVariable Long id){
@@ -49,18 +53,14 @@ public class TaskController {
     }
     @DeleteMapping("/task/{id}")
     String deleteTask(@PathVariable Long id) throws Exception {
-        if(!taskRepository.existsById(id)){
-            throw new Exception("Task doesn't exist");
-        }
-        taskRepository.deleteById(id);
-        return "Task deleted";
+        return toDoListService.deleteTask(id);
     }
     @GetMapping("/tasksDate/{date}")
     List<Task> getAllByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
-        return taskRepository.getTasksByDate(date);
+        return toDoListService.getByDate(date);
     }
     @GetMapping("/tasks")
     List<Task> getAllTasks(){
-        return taskRepository.findAll();
+        return toDoListService.getAllTasks();
     }
 }
