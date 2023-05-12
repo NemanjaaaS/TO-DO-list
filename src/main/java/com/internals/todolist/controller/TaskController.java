@@ -35,6 +35,7 @@ public class TaskController {
                     task.setDescription(newTask.getDescription());
                     task.setFinished(newTask.isFinished());
                     task.setTime(newTask.getTime());
+                    task.setDate(newTask.getDate());
                     return taskRepository.save(task);
                 });
     }
@@ -42,7 +43,7 @@ public class TaskController {
     Optional<Task> setFinished(@PathVariable Long id){
         return taskRepository.findById(id)
                         .map(task1 -> {
-                            task1.setFinished(true);
+                            task1.setFinished(!task1.isFinished());
                             return taskRepository.save(task1);
                         });
     }
