@@ -13,11 +13,11 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("http://localhost:3000/")
 public class TaskController {
-    private final TaskRepository taskRepository;
+
     private final ToDoListServiceImpl toDoListService;
 
-    public TaskController(TaskRepository taskRepository, ToDoListServiceImpl toDoListService) {
-        this.taskRepository = taskRepository;
+    public TaskController(ToDoListServiceImpl toDoListService) {
+
         this.toDoListService = toDoListService;
     }
 
